@@ -1,3 +1,7 @@
+# Anotações realizadass durante o curso
+
+https://impartial-cocoa-46c.notion.site/Unit-Tests-in-Angular-fc2002671be0420d8659ba40d846c983
+
 # NgTest1
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
