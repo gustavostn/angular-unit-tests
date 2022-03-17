@@ -8,9 +8,10 @@ export class UniqueIdService {
   constructor() { }
 
   private numberOffGeneratedIds: number = 0
+  private validPrefixId = /^[A-Za-z]+[\w\-\:\.]*$/;
 
   generateIdWithPrefix(prefix: string): string {
-    if(!prefix) throw Error("Prefix can not be empty")
+    if(!prefix || !this.validPrefixId.test(prefix)) throw Error("Prefix can not be empty")
     const uniqueId = this.generateUniqueId()
     this.numberOffGeneratedIds++
     return `${prefix}-${uniqueId}`

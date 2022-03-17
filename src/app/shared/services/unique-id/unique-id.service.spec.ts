@@ -30,4 +30,35 @@ describe(UniqueIdService.name, () => {
         }
         expect(service.getNumberOfGenerateUniqueId()).toBe(QTY_IDS_TO_GENERATE)
     })
+
+    it(`${UniqueIdService.prototype.generateIdWithPrefix.name} should throw when called empty` ,() => {
+        // Quando for testar exceções é necessario chamar este método dentro de uma funcao
+        const empetyValues = [null, undefined, '', '213', '0']
+        empetyValues.forEach(emptyValue => {
+            expect(_ => service.generateIdWithPrefix(emptyValue)).toThrow()
+        });
+    })
+
+    //Adicionando contexto em cada it para diferencia-los
+    it(`#${UniqueIdService.prototype.generateIdWithPrefix.name} should throw when called empty`, () => {
+        const empetyValues = [null, undefined, '', '213', '0']
+        empetyValues.forEach(emptyValue => {
+            expect(_ => 
+                service.generateIdWithPrefix(emptyValue))
+                .withContext(`Empty value: ${emptyValue}`)
+                .toThrow()
+        });
+    })
+
+    //Tipos de validação de booleano
+    it(`#${UniqueIdService.prototype.generateIdWithPrefix.name} should generate id started with prefix when called with prefix`, () => {
+        const id = service.generateIdWithPrefix('stn')
+        expect(id.startsWith('stn-')).toBeTrue() 
+
+        expect(true).toBeTrue() // So valida tipos primitivos, true ou false literal
+        expect(true).toBe(true) // Compara se são 2 elementos iguais, mesma referencia e tipo
+        expect(1).toBeTruthy() // O mais generico de todos, valida de acordo com as regras do JS
+    }) 
+
+
 })
